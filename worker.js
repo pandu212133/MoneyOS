@@ -1,0 +1,1 @@
+importScripts('engine.js','intelligence.js');onmessage=e=>{try{let {debts,budget,horizon,depth}=e.data;postMessage({analysis:FinIntelligence.analyze(debts,budget,horizon,depth),risk:FinIntelligence.risk(debts,budget,horizon,300)})}catch(e){postMessage({error:e.message})}};
