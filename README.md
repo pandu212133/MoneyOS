@@ -15,3 +15,6 @@ Security: localStorage remains plaintext; encrypted backup uses AES-GCM/PBKDF2. 
 
 ## 2.0 preview upgrade
 Intelligence now includes Decision Lab: immediate single-loan lump-sum comparison with reserve protection, income and rate stress tests, and explicit shortfall warnings. Existing data key and modules retained. Test with `node pro.test.js`. This is a preview, not a validated production financial planner. Existing limitations (localStorage, backup-only encryption, experimental forecasting) remain. No physical iOS or browser integration testing performed for this upgrade. Back up before replacing files. Close old PWA windows to allow service worker update.
+
+## Financial Freedom Edition 2.1
+New original icon, five-tab navigation, zero-based salary allocation, upcoming-obligation cash runway, purchase opportunity-cost calculator and financial checkup. Existing storage key and data schema retained. Run `node freedom.test.js` plus the existing test files. Cash runway is a limited event projection, not a full daily spending forecast. No automatic bank sync, receipt OCR, native Face ID, encrypted live database or native widgets. Existing encrypted backup support retained. Browser and physical iPhone integration testing still required. Deploy all runtime files at the repository root; back up existing records before upgrading.

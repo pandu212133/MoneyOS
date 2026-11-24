@@ -1,0 +1,3 @@
+const assert=require('node:assert/strict'),F=require('./freedom');
+for(let i=0;i<1000;i++){let income=i*123, p=F.plan({income,essential:20000,minimum:15000,reserve:3000,goals:1000});assert.equal(p.rows.reduce((s,r)=>s+r.allocated,0)+p.surplus,income);assert.equal(p.shortfall,Math.max(0,39000-income));assert.ok(p.rows.every(r=>r.allocated>=0&&r.allocated<=r.requested))}
+assert.deepEqual(F.calendar(100,[{date:'2026-01-02',amount:200},{date:'2026-01-01',amount:-150}]).map(x=>x.balance),[-50,150]);assert.equal(F.purchase(10000,3000,0,12).months,4);assert.throws(()=>F.plan({income:-1,essential:0,minimum:0,reserve:0,goals:0}));console.log('Freedom: 1000 allocation cases and 3 additional checks passed');

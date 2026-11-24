@@ -1,0 +1,6 @@
+(function(root){'use strict';
+function plan({income,essential,minimum,reserve,goals}){for(const x of [income,essential,minimum,reserve,goals])if(!Number.isSafeInteger(x)||x<0)throw Error('Invalid amount');let left=income;const rows=[];for(const [name,requested] of [['Essential spending',essential],['Minimum debt payments',minimum],['Emergency reserve',reserve],['Savings goals',goals]]){const allocated=Math.min(left,requested);left-=allocated;rows.push({name,requested,allocated,gap:requested-allocated})}return {rows,surplus:left,shortfall:rows.reduce((s,r)=>s+r.gap,0)}}
+function calendar(cash,events){if(!Number.isSafeInteger(cash))throw Error('Invalid cash');return [...events].sort((a,b)=>a.date.localeCompare(b.date)||a.amount-b.amount).map(e=>{if(!Number.isSafeInteger(e.amount))throw Error('Invalid event');cash+=e.amount;return {...e,balance:cash}})}
+function purchase(price,monthly,annual,months){if(![price,monthly,annual,months].every(Number.isFinite)||price<0||monthly<0||annual<0||annual>100||months<1||months>360||!Number.isInteger(months))throw Error('Invalid purchase inputs');return {months:monthly?Math.ceil(price/monthly):null,future:Math.round(price*Math.pow(1+annual/1200,months))}}
+const api={plan,calendar,purchase};if(typeof module!=='undefined')module.exports=api;else root.Freedom=api;
+})(globalThis);
